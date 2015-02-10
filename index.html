@@ -17,7 +17,7 @@
         var eventSelect = $('#eventSelect').MPEventSelect();
         var propSelect  = $('#propSelect').MPPropertySelect();
         var dateSelect  = $('#dateSelect').MPDatepicker();
-        var eventGraph  = $('#graph').MPChart({chartType: 'line'});
+        
         var eventTable  = $('#table').MPTable();
 
         var runQuery = function() {
@@ -27,7 +27,7 @@
 
           if (eventName) {
             MP.api.segment(eventName, propName, dateRange).done(function(results) {
-              eventGraph.MPChart('setData', results);
+              var eventGraph  = $('<div></div>').MPChart({chartType: 'line', data: results});
               eventTable.MPTable('setData', results);
             });
           }
